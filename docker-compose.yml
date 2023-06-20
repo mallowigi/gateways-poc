@@ -5,6 +5,9 @@ networks:
 volumes:
   kong_data: { }
 services:
+  #######################################
+  # Kong Postgres
+  #######################################
   kong-database:
     image: postgres:9.6
     restart: always
@@ -24,9 +27,12 @@ services:
       timeout: 30s
       retries: 5
 
+  #######################################
+  # Kong DB migrations
+  #######################################
   kong-migration:
     image: kong:latest
-    command: "kong migrations bootstrap && kong migrations up"
+    command: "kong migrations bootstrap"
     networks:
       - kong-net
     restart: on-failure
@@ -41,19 +47,34 @@ services:
     depends_on:
       - kong-database
 
+  #######################################
+  # Kong Post migrations
+  #######################################
   kong-migrations-up:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
-    command: kong migrations up && kong migrations finish
-    profiles: [ "database" ]
+    image: kong:latest
+    command: "kong migrations up && kong migrations finish"
+    environment:
+      KONG_DATABASE: postgres
+      KONG_PG_HOST: kong-database
+      KONG_PG_DATABASE: kong
+      KONG_PG_USER: kong
+      KONG_PG_PASSWORD: ${KONG_PG_PASSWORD:-kong}
     depends_on:
       - kong-database
+      - kong-migration
     networks:
       - kong-net
     restart: on-failure
 
+  #######################################
+  # Kong Gateway
+  #######################################
   kong-gateway:
-    image: kong/kong-gateway:latest
+    image: kong:latest
     restart: always
+    build:
+      context: .
+      dockerfile: ./Dockerfile
     networks:
       - kong-net
     environment:
@@ -64,10 +85,10 @@ services:
       KONG_PROXY_LISTEN: 0.0.0.0:8000
       KONG_PROXY_LISTEN_SSL: 0.0.0.0:8443
       KONG_ADMIN_LISTEN: 0.0.0.0:8001
-      KONG_PLUGINS: bundled,oidc
     depends_on:
-      - kong-migration
       - kong-database
+      - kong-migration
+      - kong-migrations-up
     healthcheck:
       test: [ "CMD", "curl", "-f", "http://kong:8001" ]
       interval: 5s
@@ -76,6 +97,7 @@ services:
     ports:
       - "8001:8001"
       - "8000:8000"
+
   #######################################
   # Konga database prepare
   #######################################
