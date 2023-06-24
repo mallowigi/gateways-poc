@@ -49,3 +49,13 @@ plugin_attr:
     export_addr:
       ip: "0.0.0.0"
       port: 9091
+
+nginx_config:
+  http_configuration_snippet: |
+    proxy_buffer_size 128k;
+    proxy_buffers 32 128k;
+    proxy_busy_buffers_size 128k;
+  http_server_configuration_snippet: |
+    proxy_buffer_size 128k;
+    proxy_buffers 32 128k;
+    proxy_busy_buffers_size 128k;
