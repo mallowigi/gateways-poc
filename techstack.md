@@ -4,9 +4,9 @@
 mallowigi/gateways-poc is built on the following main stack:
 
 - [Lua](http://www.lua.org/) – Languages
+- [Docker](https://www.docker.com/) – Virtual Machine Platforms & Containers
 - [Kong](https://konghq.com/) – API Gateway
 - [Shell](https://en.wikipedia.org/wiki/Shell_script) – Shells
-- [Docker](https://www.docker.com/) – Virtual Machine Platforms & Containers
 
 Full tech stack [here](/techstack.md)
 
@@ -17,9 +17,9 @@ Full tech stack [here](/techstack.md)
 mallowigi/gateways-poc is built on the following main stack:
 
 - <img width='25' height='25' src='https://img.stackshare.io/service/2118/128px-Lua-Logo.svg.png' alt='Lua'/> [Lua](http://www.lua.org/) – Languages
+- <img width='25' height='25' src='https://img.stackshare.io/service/586/n4u37v9t_400x400.png' alt='Docker'/> [Docker](https://www.docker.com/) – Virtual Machine Platforms & Containers
 - <img width='25' height='25' src='https://ucarecdn.com/3cf09daa-4e1e-404e-a612-f8a91c661db2/' alt='Kong'/> [Kong](https://konghq.com/) – API Gateway
 - <img width='25' height='25' src='https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png' alt='Shell'/> [Shell](https://en.wikipedia.org/wiki/Shell_script) – Shells
-- <img width='25' height='25' src='https://img.stackshare.io/service/586/n4u37v9t_400x400.png' alt='Docker'/> [Docker](https://www.docker.com/) – Virtual Machine Platforms & Containers
 
 Full tech stack [here](/techstack.md)
 
@@ -30,7 +30,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [mallowigi/gateways-poc](https://github.com/mallowigi/gateways-poc)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|5<br/>Tools used|01/05/24 <br/>Report generated|
+|5<br/>Tools used|02/29/24 <br/>Report generated|
 |------|------|
 </div>
 
